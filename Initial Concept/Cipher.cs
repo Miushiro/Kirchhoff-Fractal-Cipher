@@ -1,6 +1,3 @@
-﻿using AsiasoftPluginLicense.Entity;
-using AsiasoftPluginLicense.Properties;
-using AsiasoftPluginLicense.Serializers;
 using Encryption.KirchhoffFractals;
 using System;
 using System.Collections.Generic;
@@ -13,17 +10,6 @@ namespace AsiasoftPluginLicense.KirchoffFractals
 {
 	public static class Cipher
 	{
-		public static ClientLicense Decrypt(string base64)
-		{
-			byte[] seedData;
-			using (SHA256 sha = SHA256.Create())
-			{
-				seedData = sha.ComputeHash(Encoding.UTF8.GetBytes(Resources.Key));
-			}
-
-			return JSONSerializers.Deserialize<ClientLicense>(Cipher.Decrypt(base64, seedData));
-		}
-
 		private static string Decrypt(string base64Cipher, byte[] seed, int block = 32, int rounds = 128)
 		{
 			Console.WriteLine(base64Cipher);
